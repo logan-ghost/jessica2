@@ -5,7 +5,7 @@ public class Jessica extends AdvancedRobot {
 
     public void run() {
         // Definir as cores do robô
-        setColors(Color.MAGENTA, Color.BLACK, Color.red); // Corpo, arma e radar
+        setColors(Color.MAGENTA, Color.BLACK, Color.RED); // Corpo, arma e radar
 
         while (true) {
             // Movimento agressivo: avançar constantemente
