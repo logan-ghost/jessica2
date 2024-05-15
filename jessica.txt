@@ -1,0 +1,38 @@
+import robocode.*;
+import java.awt.Color;
+
+public class Jessica extends AdvancedRobot {
+
+    public void run() {
+        // Definir as cores do robô
+        setColors(Color.MAGENTA, Color.BLACK, Color.PURPLE); // Corpo, arma e radar
+
+        while (true) {
+            // Movimento agressivo: avançar constantemente
+            setAhead(10000);
+            execute();
+        }
+    }
+
+    public void onScannedRobot(ScannedRobotEvent e) {
+        // Calcular o ângulo para o inimigo
+        double enemyBearing = getHeadingRadians() + e.getBearingRadians();
+        
+        // Virar a arma para o inimigo
+        setTurnGunRightRadians(normalizeBearing(enemyBearing - getGunHeadingRadians()));
+        
+        // Atirar com potência máxima
+        fire(3);
+    }
+
+    // Método para normalizar um ângulo para o intervalo entre -PI e PI
+    public double normalizeBearing(double angle) {
+        while (angle > Math.PI) {
+            angle -= 2*Math.PI;
+        }
+        while (angle < -Math.PI) {
+            angle += 2*Math.PI;
+        }
+        return angle;
+    }
+}
